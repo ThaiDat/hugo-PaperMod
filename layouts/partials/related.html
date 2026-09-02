@@ -1,0 +1,13 @@
+{{ $related := sort (.Site.RegularPages.Related . | first 5) "Date" "desc" }}
+{{ with $related }}
+  <div class="related">
+    <h3>{{- i18n "related" -}}</h3>
+    <ul>
+      {{ range . }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}
