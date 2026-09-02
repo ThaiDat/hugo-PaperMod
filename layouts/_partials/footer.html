@@ -10,9 +10,11 @@
 {{- end }}
 
 {{- if (not site.Params.disableScrollToTop) }}
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
 {{- end }}
@@ -21,17 +23,19 @@
 
 {{- $mainScripts := slice (resources.Get "js/menu-scroll.js") (resources.Get "js/smooth-anchor.js") }}
 {{- if not site.Params.disableScrollToTop }}
-    {{- $mainScripts = $mainScripts | append (resources.Get "js/scroll-to-top.js") }}
+{{- $mainScripts = $mainScripts | append (resources.Get "js/scroll-to-top.js") }}
 {{- end }}
 {{- if not site.Params.disableThemeToggle }}
-    {{- $mainScripts = $mainScripts | append (resources.Get "js/theme-toggle.js") }}
+{{- $mainScripts = $mainScripts | append (resources.Get "js/theme-toggle.js") }}
 {{- end }}
 {{- $mainJS := $mainScripts | resources.Concat "assets/js/main.js" | resources.Minify | fingerprint }}
 <script defer src="{{ $mainJS.RelPermalink }}" integrity="{{ $mainJS.Data.Integrity }}"></script>
 
-{{- if (and (eq .Kind "page") (ne .Layout "archives") (ne .Layout "search") (.Param "hasCode") (.Param "ShowCodeCopyButtons")) }}
-    {{- $postJS := resources.Get "js/post.js" | js.Build (dict "params" (dict "codeCopy" (i18n "code_copy" | default "copy") "codeCopied" (i18n "code_copied" | default "copied!"))) | resources.Minify | fingerprint }}
-    <script defer src="{{ $postJS.RelPermalink }}" integrity="{{ $postJS.Data.Integrity }}"></script>
+{{- if (and (eq .Kind "page") (ne .Layout "archives") (ne .Layout "search") (.Param "hasCode") (.Param
+"ShowCodeCopyButtons")) }}
+{{- $postJS := resources.Get "js/post.js" | js.Build (dict "params" (dict "codeCopy" (i18n "code_copy" | default "copy")
+"codeCopied" (i18n "code_copied" | default "copied!"))) | resources.Minify | fingerprint }}
+<script defer src="{{ $postJS.RelPermalink }}" integrity="{{ $postJS.Data.Integrity }}"></script>
 {{- end }}
 
 {{- if (and (eq .Kind "page") (ne .Layout "archives") (ne .Layout "search") (.Param "hasMermaid")) }}
