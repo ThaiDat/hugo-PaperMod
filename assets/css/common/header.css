@@ -69,20 +69,12 @@
     background: var(--accent-soft);
 }
 
-.theme-toggle:active svg {
+.theme-toggle:active .theme-icon {
     transform: rotate(24deg) scale(0.92);
 }
 
-.theme-toggle svg {
+.theme-toggle .theme-icon {
     transition: transform 0.3s ease;
-}
-
-[data-theme="dark"] .moon {
-    display: none;
-}
-
-[data-theme="light"] .sun {
-    display: none;
 }
 
 .logo-switches {

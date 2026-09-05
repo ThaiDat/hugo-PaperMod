@@ -50,10 +50,6 @@
 {{- $license_css := (resources.Get "css/core/license.css") }}
 {{- $common := (resources.Match "css/common/*.css") | resources.Concat "assets/css/common.css" }}
 
-{{- /* doodle tiles: project images/ overrides theme images/; fingerprinted, URLs injected below.
-   To customize, drop images/doodles-light.svg and/or images/doodles-dark.svg
-   in the site root (same 320px tile format).
-   Toggle with params.ShowDoodles (default true). */}}
 {{- $doodleCSS := "" | resources.FromString "assets/css/doodle-bg.css" }}
 {{- if (site.Params.ShowDoodles | default true) }}
 {{- $lightSrc := "themes/hugo-PaperMod/images/doodles-light.svg" }}
@@ -65,12 +61,19 @@
 {{- $doodleCSS = (resources.Get "css/core/doodle-bg.css") | resources.ExecuteAsTemplate "assets/css/doodle-bg.css" (dict "Light" $doodleLight.RelPermalink "Dark" $doodleDark.RelPermalink) }}
 {{- end }}
 
+{{- $themeToggleCSS := "" | resources.FromString "assets/css/theme-toggle.css" }}
+{{- if (not site.Params.disableThemeToggle) }}
+{{- $moon := ("themes/hugo-PaperMod/images/moon.svg" | readFile) | resources.FromString "images/moon.svg" | resources.Minify | fingerprint }}
+{{- $sun := ("themes/hugo-PaperMod/images/sun.svg" | readFile) | resources.FromString "images/sun.svg" | resources.Minify | fingerprint }}
+{{- $themeToggleCSS = (resources.Get "css/core/theme-toggle.css") | resources.ExecuteAsTemplate "assets/css/theme-toggle.css" (dict "Moon" $moon.RelPermalink "Sun" $sun.RelPermalink) }}
+{{- end }}
+
 {{- /* markup.highlight.noClasses should be set to `false` */}}
 {{- $chroma_styles := (resources.Get "css/includes/chroma-styles.css") }}
 {{- $chroma_mod := (resources.Get "css/includes/chroma-mod.css") }}
 
 {{- /* order is important */}}
-{{- $core := (slice $theme_vars $reset $common $doodleCSS $chroma_styles $chroma_mod $includes_all $media) | resources.Concat "assets/css/core.css" | resources.Minify }}
+{{- $core := (slice $theme_vars $reset $common $doodleCSS $themeToggleCSS $chroma_styles $chroma_mod $includes_all $media) | resources.Concat "assets/css/core.css" | resources.Minify }}
 {{- $extended := (resources.Match "css/extended/*.css") | resources.Concat "assets/css/extended.css" | resources.Minify }}
 
 {{- /* bundle all required css */}}
