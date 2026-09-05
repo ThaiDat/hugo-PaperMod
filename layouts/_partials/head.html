@@ -50,12 +50,27 @@
 {{- $license_css := (resources.Get "css/core/license.css") }}
 {{- $common := (resources.Match "css/common/*.css") | resources.Concat "assets/css/common.css" }}
 
+{{- /* doodle tiles: project images/ overrides theme images/; fingerprinted, URLs injected below.
+   To customize, drop images/doodles-light.svg and/or images/doodles-dark.svg
+   in the site root (same 320px tile format).
+   Toggle with params.ShowDoodles (default true). */}}
+{{- $doodleCSS := "" | resources.FromString "assets/css/doodle-bg.css" }}
+{{- if (site.Params.ShowDoodles | default true) }}
+{{- $lightSrc := "themes/hugo-PaperMod/images/doodles-light.svg" }}
+{{- if (os.FileExists "images/doodles-light.svg") }}{{ $lightSrc = "images/doodles-light.svg" }}{{ end }}
+{{- $darkSrc := "themes/hugo-PaperMod/images/doodles-dark.svg" }}
+{{- if (os.FileExists "images/doodles-dark.svg") }}{{ $darkSrc = "images/doodles-dark.svg" }}{{ end }}
+{{- $doodleLight := ($lightSrc | readFile) | resources.FromString "images/doodles-light.svg" | resources.Minify | fingerprint }}
+{{- $doodleDark := ($darkSrc | readFile) | resources.FromString "images/doodles-dark.svg" | resources.Minify | fingerprint }}
+{{- $doodleCSS = (resources.Get "css/core/doodle-bg.css") | resources.ExecuteAsTemplate "assets/css/doodle-bg.css" (dict "Light" $doodleLight.RelPermalink "Dark" $doodleDark.RelPermalink) }}
+{{- end }}
+
 {{- /* markup.highlight.noClasses should be set to `false` */}}
 {{- $chroma_styles := (resources.Get "css/includes/chroma-styles.css") }}
 {{- $chroma_mod := (resources.Get "css/includes/chroma-mod.css") }}
 
 {{- /* order is important */}}
-{{- $core := (slice $theme_vars $reset $common $chroma_styles $chroma_mod $includes_all $media) | resources.Concat "assets/css/core.css" | resources.Minify }}
+{{- $core := (slice $theme_vars $reset $common $doodleCSS $chroma_styles $chroma_mod $includes_all $media) | resources.Concat "assets/css/core.css" | resources.Minify }}
 {{- $extended := (resources.Match "css/extended/*.css") | resources.Concat "assets/css/extended.css" | resources.Minify }}
 
 {{- /* bundle all required css */}}
