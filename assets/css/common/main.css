@@ -4,8 +4,10 @@
     max-width: calc(var(--main-width) + var(--gap) * 2);
     margin: auto;
     padding: var(--gap);
-    animation: home-rise 0.45s ease both;
+    animation: home-rise 0.45s ease;
 }
+
+
 
 @keyframes home-rise {
     from {
