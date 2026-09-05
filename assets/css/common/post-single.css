@@ -70,10 +70,12 @@
 
 details.toc {
     margin-bottom: var(--content-gap);
-    background: var(--entry);
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: var(--glass-blur-sm);
+    backdrop-filter: var(--glass-blur-sm);
     border-radius: 14px;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-inner);
 }
 
 details.toc summary {
@@ -159,9 +161,11 @@ details li ul {
 .share-buttons,
 .paginav {
     border-radius: 14px;
-    background: var(--entry);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-soft);
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: var(--glass-blur-sm);
+    backdrop-filter: var(--glass-blur-sm);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-inner);
 }
 
 .post-tags a {
@@ -171,14 +175,13 @@ details li ul {
     color: var(--secondary);
     font-size: 14px;
     line-height: 34px;
-    transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .post-tags a:hover,
 .paginav a:hover {
     background: var(--accent-soft);
     border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-    transform: translateY(-1px);
 }
 
 .share-buttons {
@@ -196,12 +199,11 @@ details li ul {
 
 .share-buttons a {
     border-radius: var(--radius-pill);
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition: background 0.2s ease;
 }
 
 .share-buttons a:hover {
     background: var(--accent-soft);
-    transform: translateY(-2px);
 }
 
 .share-buttons a:not(:last-of-type) {

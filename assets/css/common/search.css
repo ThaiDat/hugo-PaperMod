@@ -3,9 +3,11 @@
     width: 100%;
     color: var(--primary);
     font-weight: 500;
-    background: var(--entry);
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-soft);
+    background: var(--glass-bg-strong);
+    -webkit-backdrop-filter: var(--glass-blur-sm);
+    backdrop-filter: var(--glass-blur-sm);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-inner);
     border-radius: 14px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -25,10 +27,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--entry);
-    box-shadow: var(--shadow-soft);
-    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    border: 1px solid var(--border);
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: var(--glass-blur-sm);
+    backdrop-filter: var(--glass-blur-sm);
+    box-shadow: var(--glass-inner);
+    transition: background .25s ease, border-color .25s ease;
+    border: 1px solid var(--glass-border);
 }
 
 .searchResults {
@@ -41,9 +45,8 @@
 
 .searchResults li:hover,
 .searchResults li:focus-within {
-    transform: translateY(-2px);
+    background: var(--glass-bg-strong);
     border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-    box-shadow: var(--shadow-lift);
 }
 
 .searchResults li .entry-link:focus {

@@ -8,11 +8,13 @@
     background:
         linear-gradient(120deg, var(--accent-soft), transparent 50%),
         linear-gradient(300deg, var(--accent-2-soft), transparent 55%),
-        var(--entry);
-    border: 1px solid var(--border);
+        var(--glass-bg);
+    border: 1px solid var(--glass-border);
     border-radius: 22px;
     padding: calc(var(--gap) * 1.25);
-    box-shadow: var(--shadow-soft);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+    box-shadow: var(--glass-inner);
 }
 
 .first-entry .entry-header {
@@ -81,17 +83,18 @@
     position: relative;
     margin-bottom: var(--gap);
     padding: var(--gap);
-    background: var(--entry);
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
     border-radius: var(--radius-lg);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-soft);
+    transition: background 0.25s ease, border-color 0.25s ease;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-inner);
 }
 
 .post-entry:hover,
 .post-entry:focus-within {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-lift);
+    background: var(--glass-bg-strong);
     border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
 }
 
