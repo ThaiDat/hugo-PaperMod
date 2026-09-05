@@ -42,6 +42,14 @@
     }
 }
 
+@media screen and (max-width: 640px) {
+    .home-info,
+    .first-entry {
+        padding: var(--gap);
+        border-radius: var(--radius-lg);
+    }
+}
+
 @media (prefers-reduced-motion) {
     /* terms; profile-mode; post-single; post-entry; post-entry; search; search */
     .terms-tags a:active,
@@ -50,6 +58,21 @@
     .top-link,
     .searchResults .focus,
     .searchResults li:active {
+        transform: none;
+    }
+
+    .main {
+        animation: none;
+    }
+
+    .post-entry,
+    .post-entry:hover,
+    .post-entry .entry-cover img,
+    .home-info .social-icons a,
+    .share-buttons a,
+    .terms-tags a,
+    .pagination a {
+        transition: none;
         transform: none;
     }
 }

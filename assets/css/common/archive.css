@@ -30,11 +30,22 @@
     position: relative;
     padding: 5px;
     margin: 10px 0;
+    border-radius: var(--radius);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.archive-entry:hover {
+    background: var(--accent-soft);
+    transform: translateX(3px);
 }
 
 .archive-entry-title {
     margin: 5px 0;
     font-weight: 400;
+}
+
+.archive-entry-title a:hover {
+    color: var(--accent-ink);
 }
 
 .archive-count,

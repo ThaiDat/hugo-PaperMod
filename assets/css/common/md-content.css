@@ -5,6 +5,15 @@
     margin: 24px 0 16px;
 }
 
+.md-content h1,
+.md-content h2,
+.md-content h3,
+.md-content h4 {
+    letter-spacing: -0.015em;
+    text-wrap: pretty;
+    scroll-margin-top: calc(var(--header-height) + 1rem);
+}
+
 .md-content h1 {
     margin: 40px auto 32px;
     font-size: 40px;
@@ -13,6 +22,8 @@
 .md-content h2 {
     margin: 32px auto 24px;
     font-size: 32px;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px dashed var(--border);
 }
 
 .md-content h3 {
@@ -32,8 +43,21 @@
 }
 
 .md-content a:not(.anchor) {
-    text-underline-offset: 0.3rem;
+    color: var(--accent-ink);
     text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    text-underline-offset: 0.22rem;
+    text-decoration-thickness: 1.5px;
+    border-radius: 4px;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+[data-theme="dark"] .md-content a:not(.anchor) {
+    color: var(--accent);
+}
+
+.md-content a:not(.anchor):hover {
+    background: var(--accent-soft);
 }
 
 .md-content del {
@@ -97,6 +121,12 @@
 
 .md-content table th {
     text-align: start;
+    background: var(--accent-2-soft);
+    color: var(--primary);
+}
+
+.md-content table tr:hover td {
+    background: var(--accent-2-soft);
 }
 
 .md-content table:not(.highlighttable) td code:only-child {
@@ -110,7 +140,10 @@
 .md-content .highlight:not(table) {
     margin-bottom: var(--content-gap);
     background: var(--code-block-bg) !important;
-    border-radius: var(--radius);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
     direction: ltr;
 }
 
@@ -148,7 +181,8 @@
     font-size: 0.78em;
     line-height: 1.5;
     background: var(--code-bg);
-    border-radius: 0.2rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
 }
 
 .md-content pre code {
@@ -157,15 +191,21 @@
     padding: 10px;
     color: rgb(213, 213, 214);
     background: var(--code-block-bg) !important;
-    border-radius: var(--radius);
+    border: none;
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
     overflow-x: auto;
     word-break: break-all;
 }
 
 .md-content blockquote {
     margin: 1rem 0;
-    padding-inline-start: 1rem;
-    border-inline-start: 0.3rem solid var(--content);
+    padding: 0.85rem 1rem;
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+    border-inline-start: 4px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    color: var(--content);
 }
 
 .md-content hr {
@@ -180,7 +220,9 @@
 }
 
 .md-content img {
-    border-radius: var(--radius);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
     margin: 1rem 0;
 }
 
@@ -194,7 +236,7 @@
 
 .md-content figure>figcaption {
     color: var(--primary);
-    font-size: 16px;
+    font-size: 0.95rem;
     font-weight: bold;
     margin: 8px 0 16px;
 }
