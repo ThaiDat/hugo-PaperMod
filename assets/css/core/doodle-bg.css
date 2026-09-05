@@ -2,13 +2,11 @@
    by head.html (artwork in images/, fingerprinted URLs injected
    as .Light / .Dark). Do not rely on it as plain CSS. */
 .list {
-    background-color: var(--code-bg);
+    background-color: var(--theme);
     background-image: url("{{ .Light }}");
     background-size: 320px 320px;
 }
 
 [data-theme="dark"] .list {
-    background-color: var(--theme);
     background-image: url("{{ .Dark }}");
-    background-size: 320px 320px;
 }

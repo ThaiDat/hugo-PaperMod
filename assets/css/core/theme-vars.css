@@ -67,11 +67,3 @@
     --glass-inner: inset 0 1px 0 rgba(255, 255, 255, 0.08);
     color-scheme: dark;
 }
-
-.list {
-    background: var(--code-bg);
-}
-
-[data-theme="dark"] .list {
-    background: var(--theme);
-}
