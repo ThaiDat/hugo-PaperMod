@@ -14,7 +14,8 @@
     --secondary: #5f7189;
     --tertiary: #d8e3ed;
     --content: #333f52;
-    --code-block-bg: #222a3b;
+    --code-block-bg: #eff1f5;
+    --code-fg: #4c4f69;
     --code-bg: #e7f0f7;
     --border: #dee7f0;
     --accent: #c13572;
@@ -47,7 +48,8 @@
     --secondary: #9dacc4;
     --tertiary: #2e3a52;
     --content: #c6d2e4;
-    --code-block-bg: #10141f;
+    --code-block-bg: #24273a;
+    --code-fg: #cad3f5;
     --code-bg: #28324a;
     --border: #2c3750;
     --accent: #f087b4;

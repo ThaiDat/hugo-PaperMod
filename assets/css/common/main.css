@@ -75,17 +75,32 @@ pre {
 .copy-code {
     display: none;
     position: absolute;
-    top: 4px;
-    right: 4px;
-    color: rgba(255, 255, 255, 0.8);
-    background: rgba(78, 78, 78, 0.8);
-    border-radius: var(--radius);
-    padding: 0 5px;
-    font-size: 14px;
+    top: 6px;
+    right: 6px;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    color: var(--code-fg);
+    background: color-mix(in srgb, var(--code-fg) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--code-fg) 16%, transparent);
+    border-radius: 9px;
+    padding: 0;
+    cursor: pointer;
     user-select: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.copy-code:hover {
+    background: color-mix(in srgb, var(--code-fg) 18%, transparent);
+    border-color: color-mix(in srgb, var(--code-fg) 30%, transparent);
+}
+
+.copy-code svg {
+    display: block;
 }
 
 div.highlight:hover .copy-code,
 pre:hover .copy-code {
-    display: block;
+    display: inline-flex;
 }
