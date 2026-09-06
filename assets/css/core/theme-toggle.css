@@ -1,5 +1,5 @@
 .theme-toggle .theme-icon {
-    display: block;
+    display: none;
     width: 17px;
     height: 17px;
     background-color: currentColor;
@@ -9,12 +9,16 @@
     mask-position: center;
     -webkit-mask-size: contain;
     mask-size: contain;
-    /* Default (light): moon */
+}
+
+[data-theme="light"] .theme-toggle .theme-icon {
+    display: block;
     -webkit-mask-image: url("{{ .Moon }}");
     mask-image: url("{{ .Moon }}");
 }
 
 [data-theme="dark"] .theme-toggle .theme-icon {
+    display: block;
     -webkit-mask-image: url("{{ .Sun }}");
     mask-image: url("{{ .Sun }}");
 }

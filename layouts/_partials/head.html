@@ -136,12 +136,6 @@ resources.Minify }}
 {{ end -}}
 
 <noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-    </style>
     {{- if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark")) }}
     <style>
         @media (prefers-color-scheme: dark) {
@@ -192,9 +186,10 @@ resources.Minify }}
 {{- else }}
 {{- /* theme is auto */}}
 <script>
-    if (localStorage.getItem("pref-theme") === "dark") {
+    let theme = localStorage.getItem("pref-theme");
+    if (theme === "dark") {
         document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
+    } else if (theme === "light") {
         document.querySelector("html").dataset.theme = 'light';
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.querySelector("html").dataset.theme = 'dark';
