@@ -38,36 +38,6 @@
 <meta name="naver-site-verification" content="{{ site.Params.analytics.naver.SiteVerificationTag }}">
 {{- end }}
 
-<noscript>
-    {{- if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark")) }}
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: #141927;
-                --entry: #1e2536;
-                --primary: #e9eef6;
-                --secondary: #9dacc4;
-                --tertiary: #2e3a52;
-                --content: #c6d2e4;
-                --code-block-bg: #24273a;
-                --code-fg: #cad3f5;
-                --code-bg: #28324a;
-                --border: #2c3750;
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-    </style>
-    {{- end }}
-</noscript>
-
 {{- /* theme-toggle is enabled */}}
 {{- if (not site.Params.disableThemeToggle) }}
 {{- /* theme is light */}}
@@ -169,9 +139,9 @@ $media) | resources.Concat "assets/css/core.css" | resources.Minify }}
 {{- if not site.Params.assets.disableFingerprinting }}
 {{- $stylesheet := $stylesheet | fingerprint }}
 <link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" integrity="{{ $stylesheet.Data.Integrity }}"
-    rel="preload stylesheet" as="style">
+    rel="stylesheet" as="style">
 {{- else }}
-<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="stylesheet" as="style">
 {{- end }}
 
 {{- /* Search */}}
@@ -210,6 +180,36 @@ resources.Minify }}
 {{- range .AllTranslations -}}
 <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
 {{ end -}}
+
+<noscript>
+    {{- if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark")) }}
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: #141927;
+                --entry: #1e2536;
+                --primary: #e9eef6;
+                --secondary: #9dacc4;
+                --tertiary: #2e3a52;
+                --content: #c6d2e4;
+                --code-block-bg: #24273a;
+                --code-fg: #cad3f5;
+                --code-bg: #28324a;
+                --border: #2c3750;
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+    </style>
+    {{- end }}
+</noscript>
 
 {{- partial "extend_head.html" . -}}
 
