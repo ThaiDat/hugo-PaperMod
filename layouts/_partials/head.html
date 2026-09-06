@@ -40,10 +40,10 @@
 
 {{- /* theme-toggle is enabled */}}
 {{- if (not site.Params.disableThemeToggle) }}
-{{- cfRocketLoaderAttr := cond (site.Params.cfRocketLoader) "data-cfasync=\"false\"" ""}}
+{{- $cfRocketLoaderAttr := cond (site.Params.cfRocketLoader) "data-cfasync=\"false\"" ""}}
 {{- /* theme is light */}}
 {{- if (eq site.Params.defaultTheme "light") }}
-<script {{ cfRocketLoaderAttr }}>
+<script {{ $cfRocketLoaderAttr }}>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.querySelector("html").dataset.theme = 'dark';
     }
@@ -51,7 +51,7 @@
 </script>
 {{- /* theme is dark */}}
 {{- else if (eq site.Params.defaultTheme "dark") }}
-<script {{ cfRocketLoaderAttr }}>
+<script {{ $cfRocketLoaderAttr }}>
     if (localStorage.getItem("pref-theme") === "light") {
         document.querySelector("html").dataset.theme = 'light';
     }
@@ -59,7 +59,7 @@
 </script>
 {{- else }}
 {{- /* theme is auto */}}
-<script {{ cfRocketLoaderAttr }}>
+<script {{ $cfRocketLoaderAttr }}>
     let theme = localStorage.getItem("pref-theme");
     if (theme === "dark") {
         document.querySelector("html").dataset.theme = 'dark';
