@@ -33,13 +33,12 @@
 
 {{- if (and (eq .Kind "page") (ne .Layout "archives") (ne .Layout "search") (.Param "hasCode") (.Param
 "ShowCodeCopyButtons")) }}
-{{- $postJS := resources.Get "js/post.js" | js.Build (dict "params" (dict "codeCopy" (i18n "code_copy" | default "copy")
-"codeCopied" (i18n "code_copied" | default "copied!"))) | resources.Minify | fingerprint }}
+{{- $postJS := resources.Get "js/post.js" | resources.Copy "assets/js/post.js" | resources.Minify | fingerprint }}
 <script defer src="{{ $postJS.RelPermalink }}" integrity="{{ $postJS.Data.Integrity }}"></script>
 {{- end }}
 
 {{- if (and (eq .Kind "page") (ne .Layout "archives") (ne .Layout "search") (.Param "hasMermaid")) }}
-<script type="module">
+<script defer type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
     mermaid.initialize({ startOnLoad: true });
 </script>
