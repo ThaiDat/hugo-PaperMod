@@ -38,18 +38,12 @@
 <meta name="naver-site-verification" content="{{ site.Params.analytics.naver.SiteVerificationTag }}">
 {{- end }}
 
-<script>
-new MutationObserver(m => console.log(
-  performance.now(),
-  document.documentElement.getAttribute("data-theme")
-)).observe(document.documentElement, { attributes: true });
-</script>
-
 {{- /* theme-toggle is enabled */}}
 {{- if (not site.Params.disableThemeToggle) }}
+{{- cfRocketLoaderAttr := cond (site.Params.cfRocketLoader) "data-cfasync=\"false\"" ""}}
 {{- /* theme is light */}}
 {{- if (eq site.Params.defaultTheme "light") }}
-<script>
+<script {{ cfRocketLoaderAttr }}>
     if (localStorage.getItem("pref-theme") === "dark") {
         document.querySelector("html").dataset.theme = 'dark';
     }
@@ -57,7 +51,7 @@ new MutationObserver(m => console.log(
 </script>
 {{- /* theme is dark */}}
 {{- else if (eq site.Params.defaultTheme "dark") }}
-<script>
+<script {{ cfRocketLoaderAttr }}>
     if (localStorage.getItem("pref-theme") === "light") {
         document.querySelector("html").dataset.theme = 'light';
     }
@@ -65,7 +59,7 @@ new MutationObserver(m => console.log(
 </script>
 {{- else }}
 {{- /* theme is auto */}}
-<script>
+<script {{ cfRocketLoaderAttr }}>
     let theme = localStorage.getItem("pref-theme");
     if (theme === "dark") {
         document.querySelector("html").dataset.theme = 'dark';
