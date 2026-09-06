@@ -38,6 +38,13 @@
 <meta name="naver-site-verification" content="{{ site.Params.analytics.naver.SiteVerificationTag }}">
 {{- end }}
 
+<script>
+new MutationObserver(m => console.log(
+  performance.now(),
+  document.documentElement.getAttribute("data-theme")
+)).observe(document.documentElement, { attributes: true });
+</script>
+
 {{- /* theme-toggle is enabled */}}
 {{- if (not site.Params.disableThemeToggle) }}
 {{- /* theme is light */}}
